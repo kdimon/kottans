@@ -1,1 +1,1 @@
-# kottans.github.io
+# https://kdimon.github.io/kottans/
