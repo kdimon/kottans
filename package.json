@@ -1,0 +1,26 @@
+{
+  "name": "mini_github_api_client",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "babel src -d build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kdimon/kottans.git"
+  },
+  "author": "Dmitriy Kulik",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kdimon/kottans/issues"
+  },
+  "homepage": "https://github.com/kdimon/kottans#readme",
+  "devDependencies": {
+    "babel-preset-env": "^1.6.0",
+    "grunt": "^1.0.1",
+    "grunt-babel": "^7.0.0",
+    "grunt-contrib-cssmin": "^2.2.1",
+    "grunt-contrib-uglify": "^3.0.1"
+  }
+}
