@@ -1,24 +1,37 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8">
-	<title>mini GitHub API client</title>
-	<link rel="stylesheet" type="text/css" href="src/css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mini GitHub API client</title>
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:300,400,500,700" type="text/css">
+    <link rel="stylesheet" href="node_modules/material-design-lite/material.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" type="text/css" href="src/css/style.css">
 
-	<!-- ---------------------------------------- -->
-	<!-- <link rel="stylesheet" type="text/css" href="build/css/style.min.css"> -->
-	<!-- ---------------------------------------- -->
+    <!-- ---------------------------------------- -->
+    <!-- <link rel="stylesheet" type="text/css" href="build/css/style.min.css"> -->
+    <!-- ---------------------------------------- -->
 </head>
-<body>
-	<form>
-		<input type="text" id="username" name="username" required>
-		<button type="button" id="submit">Submit</button>
-	</form>
+<body class="mdl-color--grey-100">
+    <main id="mainContent">
+        <div class="greetings mdl-typography--display-1-color-contrast mdl-typography--text-center">Welcome to mini Github API client</div>
+        <section class="form">
+            <form>
+                <div class="mdl-textfield mdl-js-textfield">
+                    <input class="mdl-textfield__input" type="text" id="username" name="username">
+                    <label class="mdl-textfield__label" for="username">Type user/organization name</label>
+                </div>
+                <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type="button" id="submit">Submit</button>
+            </form>
+        </section>
+    </main>
 
-	<script src="src/js/main.js"></script>
+    <script src="node_modules/material-design-lite/material.min.js"></script>
+    <script src="src/js/main.js"></script>
 
-	<!-- ---------------------------------------- -->
-	<!-- script src="build/js/main.min.js"></script> -->
-	<!-- ---------------------------------------- -->
+    <!-- ---------------------------------------- -->
+    <!-- script src="build/js/main.min.js"></script> -->
+    <!-- ---------------------------------------- -->
 </body>
 </html>
