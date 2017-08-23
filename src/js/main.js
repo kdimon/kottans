@@ -8,11 +8,12 @@ submit.addEventListener('click', function() {
     }
 
     let body = document.body;
-    let repoSections = document.getElementsByClassName('repos');
+    let repoSections = [...document.getElementsByClassName('repos')];
 
-    // @todo Remove existing markup of section
 	if(repoSections.length) {
-        repoSections.remove();
+	    for(let i = 0; i < repoSections.length; i++) {
+	        repoSections[i].remove();
+        }
     }
 
     let url = `https://api.github.com/users/${username}/repos`;
