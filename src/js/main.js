@@ -1,18 +1,17 @@
 let submit = document.getElementById('submit');
 
 submit.addEventListener('click', function() {
-	let username = document.getElementById('username').value;
+    let username = document.getElementById('username').value;
 
-	if(!username.length) {
-	    return alert('Please, enter user/organization name!');
+    if(!username.length) {
+        return alert('Please, enter user/organization name!');
     }
 
-    let body = document.body;
     let repoSections = [...document.getElementsByClassName('repos')];
 
-	if(repoSections.length) {
-	    for(let i = 0; i < repoSections.length; i++) {
-	        repoSections[i].remove();
+    if(repoSections.length) {
+        for(let i = 0; i < repoSections.length; i++) {
+            repoSections[i].remove();
         }
     }
 
@@ -21,6 +20,7 @@ submit.addEventListener('click', function() {
     getHttp(url)
         .then(
             response => {
+                console.clear();
                 console.log(response);
                 let repo = JSON.parse(response);
                 return repo;
@@ -30,16 +30,36 @@ submit.addEventListener('click', function() {
         .then(
             repo => {
                 console.log(repo);
+                let mainSection = document.getElementById('mainContent');
+
+                let dateOptions = {
+                    month: 'short',
+                    day: 'numeric'
+                };
+
                 repo.forEach(function(item) {
                     // @todo Add 'forked from'
-                    let markup = `<section class="repos">
-                                      <div>${item.name}</div>
-                                      <div>${item.description}</div>
-                                      <div>${item.stargazers_count}</div>
-                                      <div>${item.updated_at}</div>
-                                      <div>${item.language}</div>
+                    let _description = (item.description == null) ? 'No description' : item.description,
+                        _language = (item.language == null) ? '' : item.language;
+
+                    let date = new Date(item.updated_at),
+                        _updatedDate = date.toLocaleString('en-US', dateOptions);
+
+                    let markup = `<section class="repos mdl-card mdl-shadow--2dp through mdl-shadow--16dp">
+                                      <div class="mdl-card__actions">
+                                          <a href="${item.html_url}" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--accent">${item.name}</a>
+                                      </div>
+                                      <div class="mdl-card__supporting-text">
+                                          ${_description}
+                                      </div>
+                                      <div class="mdl-card__supporting-text">
+                                          <span><i class="material-icons md-14">star_rate</i> ${item.stargazers_count}</span>
+                                          <span>Updated on ${_updatedDate}</span>
+                                          <span>${_language}</span>
+                                      </div>
                                   </section>`;
-                    body.insertAdjacentHTML('beforeEnd', markup);
+
+                    mainSection.insertAdjacentHTML('beforeEnd', markup);
 
                 });
             }
