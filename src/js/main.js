@@ -1,12 +1,36 @@
-let submit = document.getElementById('submit');
+/**
+ * Data request
+ *
+ * @param url
+ * @returns {Promise}
+ */
+function getHttp(url) {
+    return new Promise(function(resolve, reject) {
+        let xhr = new XMLHttpRequest();
+        xhr.open('GET', url, true);
 
-submit.addEventListener('click', function() {
-    let username = document.getElementById('username').value;
+        xhr.onload = function() {
+            if(this.status == 200) {
+                resolve(this.response);
+            }else {
+                let error = new Error(this.statusText);
+                error.code = this.status;
+                reject(error);
+            }
+        };
 
-    if(!username.length) {
-        return alert('Please, enter user/organization name!');
-    }
+        xhr.onerror = function() {
+            reject(new Error('Network error'));
+        };
 
+        xhr.send();
+    });
+}
+
+/**
+ * Clear outputted data before new request
+ */
+function clearOutputtedData() {
     let repoSections = [...document.getElementsByClassName('repos')];
 
     if(repoSections.length) {
@@ -14,6 +38,28 @@ submit.addEventListener('click', function() {
             repoSections[i].remove();
         }
     }
+}
+
+/**
+ * Check on empty input
+ *
+ * @param val
+ * @returns string
+ */
+function checkOnEmptyInput(val) {
+    if(!val.length) {
+        return alert('Please, enter user/organization name!');
+    }
+}
+
+let submit = document.getElementById('submit');
+
+submit.addEventListener('click', function() {
+    clearOutputtedData();
+
+    let username = document.getElementById('username').value;
+
+    checkOnEmptyInput(username);
 
     let url = `https://api.github.com/users/${username}/repos`;
 
@@ -40,9 +86,8 @@ submit.addEventListener('click', function() {
                 repo.forEach(function(item) {
                     // @todo Add 'forked from'
                     let _description = (item.description == null) ? 'No description' : item.description,
-                        _language = (item.language == null) ? '' : item.language;
-
-                    let date = new Date(item.updated_at),
+                        _language = (item.language == null) ? '' : item.language,
+                        date = new Date(item.updated_at),
                         _updatedDate = date.toLocaleString('en-US', dateOptions);
 
                     let markup = `<section class="repos mdl-card mdl-shadow--2dp through mdl-shadow--16dp">
@@ -65,26 +110,3 @@ submit.addEventListener('click', function() {
             }
         );
 });
-
-function getHttp(url) {
-    return new Promise(function(resolve, reject) {
-        let xhr = new XMLHttpRequest();
-        xhr.open('GET', url, true);
-
-        xhr.onload = function() {
-            if(this.status == 200) {
-                resolve(this.response);
-            }else {
-                let error = new Error(this.statusText);
-                error.code = this.status;
-                reject(error);
-            }
-        };
-
-        xhr.onerror = function() {
-            reject(new Error('Network error'));
-        };
-
-        xhr.send();
-    });
-}
