@@ -46,8 +46,8 @@ submit.addEventListener('click', function() {
                         _updatedDate = date.toLocaleString('en-US', dateOptions);
 
                     let markup = `<section class="repos mdl-card mdl-shadow--2dp through mdl-shadow--16dp">
-                                      <div class="mdl-card__actions">
-                                          <a href="${item.html_url}" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--accent">${item.name}</a>
+                                      <div class="mdl-card__title">
+                                          <a href="${item.html_url}" class="mdl-card__title-text mdl-button--accent">${item.name}</a>
                                       </div>
                                       <div class="mdl-card__supporting-text">
                                           ${_description}

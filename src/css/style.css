@@ -14,6 +14,13 @@
 .mdl-card {
     min-height: auto;
 }
+.mdl-card__title a {
+    text-decoration: none;
+}
+.mdl-card__title a:hover,
+.mdl-card__title a:focus {
+    text-decoration: underline;
+}
 .mdl-card__supporting-text {
     padding: 8px 16px;
 }
