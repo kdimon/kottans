@@ -25,6 +25,24 @@
                 <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" type="button" id="submit">Submit</button>
             </form>
         </section>
+        <section class="form">
+            <select name="filters" id="filters">
+                <option value="openIssues">Open issues</option>
+                <option value="topics">Topics</option>
+                <option value="stared">Stared >= 10 times</option>
+                <option value="updatedAfter">Updated after <span id="updatedAfterDate">Jul 22</span></option>
+                <option value="typeAll">Type: all</option>
+                <option value="typeForks">Type: forks</option>
+                <option value="typeSources">Type: sources</option>
+                <option value="language">Language</option>
+            </select>
+            <select name="sort" id="sort">
+                <option value="name">Repo name</option>
+                <option value="stars">Stars</option>
+                <option value="openIssues">Open issues</option>
+                <option value="updatedDate">Updated date</option>
+            </select>
+        </section>
     </main>
 
     <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>

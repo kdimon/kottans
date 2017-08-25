@@ -40,18 +40,6 @@ function clearOutputtedData() {
     }
 }
 
-/**
- * Check on empty input
- *
- * @param val
- * @returns string
- */
-function checkOnEmptyInput(val) {
-    if(!val.length) {
-        return alert('Please, enter user/organization name!');
-    }
-}
-
 let submit = document.getElementById('submit');
 
 submit.addEventListener('click', function() {
@@ -59,7 +47,10 @@ submit.addEventListener('click', function() {
 
     let username = document.getElementById('username').value;
 
-    checkOnEmptyInput(username);
+    if(!username.length) {
+        alert('Please, enter user/organization name!');
+        return;
+    }
 
     let url = `https://api.github.com/users/${username}/repos`;
 
@@ -91,22 +82,33 @@ submit.addEventListener('click', function() {
                         _updatedDate = date.toLocaleString('en-US', dateOptions);
 
                     let markup = `<section class="repos mdl-card mdl-shadow--2dp through mdl-shadow--16dp">
-                                      <div class="mdl-card__title">
+                                      <div class="mdl-card__title name">
                                           <a href="${item.html_url}" class="mdl-card__title-text mdl-button--accent">${item.name}</a>
                                       </div>
                                       <div class="mdl-card__supporting-text">
                                           ${_description}
                                       </div>
                                       <div class="mdl-card__supporting-text">
-                                          <span><i class="material-icons md-14">star_rate</i> ${item.stargazers_count}</span>
-                                          <span>Updated on ${_updatedDate}</span>
+                                          <span><i class="material-icons md-14">star_rate</i> <span class="stars">${item.stargazers_count}</span></span>
+                                          <span class="updated-date">Updated on ${_updatedDate}</span>
                                           <span>${_language}</span>
                                       </div>
                                   </section>`;
 
                     mainSection.insertAdjacentHTML('beforeEnd', markup);
-
                 });
             }
         );
 });
+
+/**
+ * Compare data for correct sorting
+ *
+ * @param val1
+ * @param val2
+ * @returns {number}
+ */
+function compareData(val1, val2) {
+    return val1 - val2;
+}
+
