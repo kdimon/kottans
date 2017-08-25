@@ -1,1 +1,0 @@
-# https://kdimon.github.io/kottans/
