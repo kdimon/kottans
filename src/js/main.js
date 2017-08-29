@@ -75,9 +75,9 @@ submit.addEventListener('click', function() {
                 };
 
                 repo.forEach(function(item) {
-                    // @todo Add 'forked from'
                     let _description = (item.description == null) ? 'No description' : item.description,
                         _language = (item.language == null) ? '' : item.language,
+                        _fork = (item.fork == true) ? 'A fork' : 'No a fork',
                         date = new Date(item.updated_at),
                         _updatedDate = date.toLocaleString('en-US', dateOptions);
 
@@ -92,6 +92,7 @@ submit.addEventListener('click', function() {
                                           <span><i class="material-icons md-14">star_rate</i> <span class="stars">${item.stargazers_count}</span></span>
                                           <span class="updated-date">Updated on ${_updatedDate}</span>
                                           <span>${_language}</span>
+                                          <span>${_fork}</span>
                                       </div>
                                   </section>`;
 

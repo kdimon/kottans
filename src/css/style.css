@@ -27,7 +27,7 @@
 .mdl-card__supporting-text:last-child {
     margin-bottom: 8px;
 }
-.mdl-card__supporting-text span:not(:first-child) {
+.mdl-card__supporting-text > span:not(:first-child) {
     margin-left: 15px;
 }
 
