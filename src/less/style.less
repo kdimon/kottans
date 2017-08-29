@@ -1,0 +1,52 @@
+.greetings {
+    padding: 20px 0;
+
+    @media screen and (min-width: 1024px) {
+        padding: 40px 0;
+    }
+}
+.form {
+    display: flex;
+    justify-content: center;
+}
+.repos {
+    margin: 20px auto;
+    max-width: 860px;
+    padding: 15px;
+    width: auto;
+}
+.mdl-card {
+    min-height: auto;
+
+    &__title a {
+        text-decoration: none;
+
+        &:hover,
+        &:focus {
+            text-decoration: underline;
+        }
+    }
+
+    &__supporting-text {
+        padding: 8px 16px;
+
+        &:last-child {
+            margin-bottom: 8px;
+        }
+
+        & > span:not(:first-child) {
+            margin-left: 15px;
+        }
+    }
+}
+
+.material-icons.md-14 {
+    font-size: 14px;
+    width: 14px;
+}
+
+@media screen and (max-width: 479px) {
+    .mdl-textfield {
+        max-width: 210px;
+    }
+}

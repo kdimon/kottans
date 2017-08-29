@@ -3,6 +3,13 @@ module.exports = function(grunt) {
   // Project configuration
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
+    less: {
+      development: {
+        files: {
+            'src/css/style.css': 'src/less/style.less'
+        }
+      }
+    },
     cssmin: {
       options: {
         sourceMap: true
@@ -33,10 +40,11 @@ module.exports = function(grunt) {
 
   // Load the plugins
   grunt.loadNpmTasks('grunt-babel');
+  grunt.loadNpmTasks('grunt-contrib-less');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-contrib-uglify');
 
   // Default tasks
-  grunt.registerTask('default', ['babel', 'uglify', 'cssmin']);
+  grunt.registerTask('default', ['babel', 'uglify', 'less', 'cssmin']);
 
 };
